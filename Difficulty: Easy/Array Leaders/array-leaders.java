@@ -45,7 +45,7 @@ class Solution {
                 list.add(0, arr[i]);
                 max = arr[i];
             }
-        } 
+        }
         return list;
     }
 }
