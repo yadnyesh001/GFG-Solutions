@@ -28,18 +28,15 @@ class GFG {
 // } Driver Code Ends
 
 
-// User function Template for Java
-
 class Solution {
 
     static Boolean isSubsetSum(int arr[], int target) {
         // code here
-        boolean[] dp = new boolean[target + 1];
-        dp[0] = true; 
-
+        boolean dp[] = new boolean[target+1];
+        dp[0] = true;
         for(int i=0; i<arr.length; i++){
-            for (int j = target; j >= arr[i]; j--) {
-                dp[j] = dp[j] || dp[j - arr[i]];
+            for(int j=target; j>=arr[i]; j--){
+                dp[j] = dp[j] || dp[j-arr[i]];
             }
         }
         return dp[target];
