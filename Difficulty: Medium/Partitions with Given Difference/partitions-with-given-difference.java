@@ -1,26 +1,26 @@
-
-import java.util.*;
-
 class Solution {
-    int countPartitions(int[] arr, int d) {
-        int total = 0;
-        for (int num : arr) total += num;
-
-        // Check if (total + d) is even and valid
-        if ((total + d) % 2 != 0 || total < d) return 0;
-
-        int target = (total + d) / 2;
-        int n = arr.length;
-
-        int[] dp = new int[target + 1];
-        dp[0] = 1; // one way to make sum 0 — pick nothing
-
-        for (int num : arr) {
-            for (int j = target; j >= num; j--) {
-                dp[j] += dp[j - num];
+    public int countPartitions(int[] arr, int diff) {
+        // code here
+        int sum = 0;
+        for(int i=0; i<arr.length; i++){
+            sum += arr[i];
+        }
+        int target = sum/2;
+        int dp[] = new int[target+1];
+        dp[0] = 1;
+        for(int i=0; i<arr.length; i++){
+            for(int j=target; j>=arr[i]; j--){
+                dp[j] = dp[j] + dp[j-arr[i]];
             }
         }
-
-        return dp[target];
+        int s1 = 0;
+        for (int i = target; i >= 0; i--) {
+            if(dp[i]>0){
+                if(sum-2*i == diff){
+                    return dp[i];
+                }
+            }
+        }
+        return 0;
     }
 }
