@@ -6,7 +6,7 @@ class Solution {
         dp[0] = true;
         for(int i=0; i<arr.length; i++){
             for(int j=sum; j>=arr[i]; j--){
-                dp[j] = dp[j] || dp[j-arr[i]];
+                dp[j] = dp[j] || dp[j - arr[i]];
             }
         }
         return dp[sum];
